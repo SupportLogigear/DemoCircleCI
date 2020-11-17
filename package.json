@@ -1,0 +1,35 @@
+{
+    "name": "websample",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "postinstall": "selenium-standalone install",
+        "clean": "rimraf built",
+        "clean-dev": "./node_modules/.bin/tsc -b --clean --dev",
+        "compile": "npm run clean && tsc",
+        "test": "./node_modules/.bin/gondola run --steps --reporter mocha-multi",
+        "test:api": "./node_modules/.bin/gondola -c gondola.api.json run --steps --reporter mochawesome",
+        "test:chrome": "./node_modules/.bin/gondola -c gondola.chrome.json run --steps --reporter mochawesome",
+        "test:headless": "./node_modules/.bin/gondola -c gondola.headless.json run --steps --reporter mochawesome",
+        "test:firefox": "./node_modules/.bin/gondola -c gondola.firefox.json run --steps --reporter mochawesome",
+        "test:edge": "./node_modules/.bin/gondola -c gondola.edge.json run --steps --reporter mochawesome",
+        "test:mobileweb": "./node_modules/.bin/gondola -c gondola.mobileweb.json run --steps --reporter mochawesome",
+        "test:multi": "./node_modules/.bin/gondola -c gondola.multi.json run-multiple regression --steps --all --reporter mochawesome"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "gondolajs": "./lib/gondolajs-1.6.64.tgz",
+        "mocha-multi": "^1.1.3",
+        "mochawesome": "^4.1.0",
+        "rimraf": "3.0.2",
+        "webdriver-manager": "^12.1.7",
+        "webdriverio": "^5.18.4"
+    },
+    "devDependencies": {
+        "@wdio/selenium-standalone-service": "^5.0.0",
+        "@types/node": "^12.12.15",
+        "typescript": "^3.7.3"
+    }
+}

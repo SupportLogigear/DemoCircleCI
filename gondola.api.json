@@ -1,0 +1,49 @@
+{
+    "tests": "./built/tests/cross-platform-demo/api*.js",
+    "timeout": 10000,
+    "output": "./results",
+    "helpers": {
+        "WebDriver": {
+            "url": "https://support9917.atlassian.net",
+            "browser": "chrome",
+            "windowSize": "maximize",            
+            "restart": true,
+            "keepBrowserState": false,
+            "keepCookies": false,
+            "waitForTimeout": 10000,
+            "smartWait": 5000,
+            "timeouts": {
+                "script": 60000,
+                "pageLoad": 10000
+            }
+        },
+        "REST": {
+            "require": "gondolajs/built/helper/RestApi"
+        },
+        "Mochawesome": {}
+    },
+    "include": {},
+    "bootstrap": false,
+    "plugins": {
+        "screenshotOnFail": {
+            "enabled": true
+        },
+        "wdio": {
+            "services": [
+                "selenium-standalone"
+            ],
+            "enabled": true
+        }
+    },
+    "mocha": {
+        "reporterOptions": {
+            "reportDir": "results/API",
+            "inlineAssets": true,
+            "timestamp": "isoDateTime",
+            "reportFilename": "[API]Demo_report",
+            "autoOpen": true,
+            "reportPageTitle": "[API]Demo_report"
+        }
+    },
+    "name": "ts_example_chrome"
+}

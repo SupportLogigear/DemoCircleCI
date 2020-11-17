@@ -1,0 +1,51 @@
+{
+    "tests": "./built/**/*_test.js",
+    "timeout": 10000,
+    "output": "./results",
+    "helpers": {
+        "WebDriver": {
+            "url": "https://demo.gondolatest.com",
+            "browser": "chrome",
+            "windowSize": "maximize",            
+            "restart": true,
+            "keepBrowserState": false,
+            "keepCookies": false,
+            "waitForTimeout": 10000,
+            "smartWait": 5000,
+            "timeouts": {
+                "script": 60000,
+                "pageLoad": 10000
+            },
+            "desiredCapabilities": {
+                "chromeOptions": {
+                    "args": [ "--headless", "--disable-gpu", "--no-sandbox" ]
+                }
+            }
+        },
+        "Mochawesome": {}
+    },
+    "include": {},
+    "bootstrap": false,
+    "plugins": {
+        "screenshotOnFail": {
+            "enabled": true
+        },
+        "wdio": {
+            "services": [
+                "selenium-standalone"
+            ],
+            "enabled": true
+        }
+    },
+    "mocha": {
+        "reporterOptions": {
+            "reportDir": "results/Chrome",
+            "inlineAssets": true,
+            "timestamp": "isoDateTime",
+            "reportFilename": "[Chrome]Demo_report",
+            "autoOpen": true,
+            "reportPageTitle": "[Chrome]Demo_report"
+        }
+    },
+    "name": "ts_example_firefox"
+}

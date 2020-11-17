@@ -1,0 +1,33 @@
+version: '3.2'
+
+services:
+  testsite:
+    image: nginx:stable
+    volumes: 
+      - ../dist:/usr/share/nginx/html
+
+  webdriver:
+    image: selenium/standalone-${BROWSER}
+    depends_on: 
+        - testsite
+      
+  gondola.tester:
+    image: node:lts
+    depends_on: 
+        - webdriver
+    environment:
+      - G_LS_TOKEN=${G_LS_TOKEN}
+      - BROWSER=${BROWSER}
+    volumes: 
+      - .:/src
+    command: npm run test -- --override "{\"helpers\":{\"WebDriver\":{\"browser\":\"$BROWSER\"}}}"
+    #command: npm run test:$BROWSER
+    #command: curl http://webdriver:4444/wd/hub/status
+    working_dir: /src
+
+  gondola.builder:
+    image: node:lts
+    volumes: 
+        - .:/src
+    command: bash -c "chmod 777 /src/.circleci/build.sh && /src/.circleci/build.sh"
+    working_dir: /src

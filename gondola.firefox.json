@@ -1,0 +1,46 @@
+{
+    "tests": "./built/tests/cross*/*_test.js",
+    "timeout": 10000,
+    "output": "./results",
+    "helpers": {
+        "WebDriver": {
+            "url": "https://support9917.atlassian.net",
+            "browser": "chrome",
+            "windowSize": "maximize",            
+            "restart": true,
+            "keepBrowserState": false,
+            "keepCookies": false,
+            "waitForTimeout": 10000,
+            "smartWait": 5000,
+            "timeouts": {
+                "script": 60000,
+                "pageLoad": 10000
+            }
+        },
+        "Mochawesome": {}
+    },
+    "include": {},
+    "bootstrap": false,
+    "plugins": {
+        "screenshotOnFail": {
+            "enabled": true
+        },
+        "wdio": {
+            "services": [
+                "selenium-standalone"
+            ],
+            "enabled": true
+        }
+    },
+    "mocha": {
+        "reporterOptions": {
+            "reportDir": "results/FireFox",
+            "inlineAssets": true,
+            "timestamp": "isoDateTime",
+            "reportFilename": "[Firefox]Demo_report",
+            "autoOpen": true,
+            "reportPageTitle": "[Firefox]Demo_report"
+        }
+    },
+    "name": "ts_example_firefox"
+}
